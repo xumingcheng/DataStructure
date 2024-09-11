@@ -8,31 +8,48 @@
 #include <iostream>
 #include <array>
 #include <string>
+#include <unordered_map>
 
 class Node
 {
 public:
-
- Node(const char *a ,size_t b):_isEnd(false)
+    std::unordered_map<char ,Node*>_children;
+    Node():_isEnd(false)
     {
         std::cout<<"Node"<<std::endl;
     }
 private :
     bool _isEnd;
+
 };
-static Node operator""_tb(const char* t,size_t len)
-{
-    return{t,len};
-}
+
 class Tree
 {
 public:
+    void insertNode(std::string str)
+    {
+        Node * node = RootNode;
+        for(auto ch:str)
+        {
+            if(node->_children.find(ch) != node->_children.end())
+            {
+                std::cout<<"not find"<<std::endl;
+                node->_children[ch] = new Node;
+            }
+            node = node->_children[ch];
+        }
+    }
     Tree()
     {
-        std::cout<<"tree" << std::endl;
+        RootNode = new Node();
+    }
+    ~Tree()
+    {
+
     }
 private:
     Node *RootNode;
     std::array<Node*,5>NodeArray;
+    std::array<Node,5>NodeArray_;
 };
 #endif //UNTITLED21_PREFIX_TREE_H

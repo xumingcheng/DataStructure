@@ -32,7 +32,7 @@ public:
          return{Msg,len};
     }
 private :
-    bool _isEnd;
+     bool _isEnd;
      char * Msg;
      size_t len;
 };
