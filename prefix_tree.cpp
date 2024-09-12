@@ -5,5 +5,13 @@
 #include "prefix_tree.h"
 int main()
 {
-    auto test = new Tree;
+    auto Treetest = new Tree;
+    Treetest->insertNode("china");
+    Treetest->insertNode("japan");
+    Treetest->insertNode("Usa");
+    Treetest->findNode("china");
+    Treetest->findNode("japan");
+    Treetest->findNode("beautiful");
+    Treetest->findNode("beautiful");
+    Treetest->findNode("U");
 }
