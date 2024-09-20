@@ -91,7 +91,7 @@ private :
      bool _isEnd;
      const char * Msg;
      size_t len;
-     std::unique_ptr<Student> _upStu;
+     std::unique_ptr<Student> _upStu; // todo 智能指针的构造函数不会去创建对象，而是初始化一个空指针 会不会调用构造函数在于会不会创建相应的资源（包含结构体，以及对象）
      std::shared_ptr<Student> _usharedpStu;
 };
 //todo 字面量的理解+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
