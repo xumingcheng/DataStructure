@@ -8,6 +8,9 @@
 #include <string_view>
 #include <iostream>
 #include <memory>
+#include <vector>
+#include <algorithm>
+#include <map>
 typedef struct Student{
     int age;
     ~Student()
@@ -20,6 +23,11 @@ typedef struct Student{
         {
             std::cout<<"conruct Student"<<std::endl;
         }
+
+    }
+
+    Student(int a)
+    {
 
     }
 }Student;
@@ -164,19 +172,77 @@ public:
         auto authority  = authoritytemp.substr(0,authoritytemp.find('/'));
         std::cout<<"authority is "<<authority<<std::endl;
     }
-
-
-
     /*todo ============================STRING的使用End================================*/
 
     /*todo ============================vector的使用===================================*/
-
-
-
-
+    void studyvector()
+    {
+        std::vector<Student> vec(10); //todo 调用Student的默认构造函数
+        std::vector<int> vec3(5, 10); //todo 指定5个值为10的元素
+        std::vector<int> _vec2 = {1,3}; //todo 初始化
+        vec3.push_back(2);//todo 向末尾增加元素
+        vec3.pop_back();//todo 向末尾删除元素
+        vec3.size();//todo 获取向量的大小
+        vec3.capacity();//todo 获取向量的容量大小
+        vec3.resize(10);//todo 重新调整容量大小，如果小于之前的容量则将多余的删除
+        if(vec3.empty()) //todo 判空
+        {
+            std::cout<<"vec is empty"<<std::endl;
+        }
+        vec3.clear();// todo 清空所有元素
+        vec3.insert(vec3.begin(),3); //todo 在第一的位置插入3
+        vec3.insert(vec3.begin()+2,3); //todo 在第2的位置插入3
+        vec3.erase(vec3.begin()+2); //todo 删除第二个元素 如果类型是对象，则会调用相应的类的析构函数
+        vec3.erase(vec3.begin()+2,vec3.begin()+3); //todo 删除第二个元素 如果类型是对象，则会调用相应的类的析构函数
+        vec.emplace_back(10);//todo emplace_back 在容器内部直接构造对象，避免了构造临时对象并拷贝或移动到容器的过程。用于在容器的末尾直接构造对象。
+        // todo 它与 push_back 的主要区别在于，emplace_back 可以避免不必要的临时对象创建和拷贝或移动操作，从而提高性能。pushback是已经存在的一个对象push进去
+        std::sort(vec.begin(),vec.end(),[](Student &stu1 ,Student &stu2)->bool //todo vector自定义lamda表达式进行排序
+        {
+          return stu1.age>stu2.age;
+        });
+        auto front = vec.front();// todo 返回第一个元素
+        auto back = vec.back();// todo 返回最后一个元素
+        //todo 遍历 基础遍历
+        for(auto & num : vec3)
+        {
+            std::cout<<"num "<< num<<std::endl;
+        }
+        for(auto num = vec3.begin();num !=vec3.end();num++ ) //todo auto & num = vec3.begin()是错误的，因为vec3.begin() 返回的是一个临时对象（即一个迭代器）。对临时对象使用引用是错误的，因为它会在定义后立即被销毁
+        {
+            std::cout<<"itor num "<< *num<<std::endl;
+        }
+        // todo swap的用法
+        vec3.swap(vec3);//todo 能够将size 和 capacity调整到当前的大小，如果一个向量删除了很多元素的情况
+        vec3.shrink_to_fit();// todo 和上面的swap交换自己功能类似
+        //todo  find的用法 ,同样也支持查找函数，lambada表达式，以及仿函数作为查找的方式
+        auto it = std::find(vec3.begin(), vec3.end(), 3);
+        auto i1t = std::find(vec3.begin(), vec3.end(), [](int &a)
+        {
+            return a > 4;
+        });
+        if(it != vec3.end())
+        {
+            std::cout<<"find success"<<std::endl;
+        }
+    }
     /*todo ============================vector的使用End================================*/
-    /*todo ============================map的使用======================================*/
 
+
+    /*todo ============================map的使用======================================*/
+    void studymap()
+    {
+        std::map<int,std::string> _map ={{1,"china"},{2,"japan"}};
+        //todo 插入元素
+        _map[2] = "USE";
+        _map.insert({4,"key"});
+        _map.emplace(5,"hello");
+        //todo 访问元素
+        _map[1];_map.at(1);//todo at如果key不存在，会抛出异常，而【】不会抛出异常
+        //todo find查找元素
+
+
+
+    }
 
 
 
