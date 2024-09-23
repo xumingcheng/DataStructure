@@ -6,4 +6,5 @@ int main()
 {
     auto Node = new NodeP;
     Node->studyUniquePtr();
+    Node->useofString();
 }

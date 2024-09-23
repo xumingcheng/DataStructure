@@ -98,6 +98,72 @@ public:
 
     /*todo ============================STRING的使用====================================*/
     /*todo STRING类是支持迭代器的*/
+    void useofString()
+    {
+        //todo 基本初始化以及用法
+        std::string str; /*todo 初始化为一个空字符串*/
+        std::cout<<str<<"空串"<<std::endl;
+
+        std::string str1("china"); /*todo 初始化为一个chia的字符串*/
+        std::cout<<str1<<"初始化为c风格的字符串"<<std::endl;
+
+        std::string str2(str1); /*todo 拷贝构造*/
+        std::cout<<str2<<"拷贝构造"<<std::endl;
+
+        std::string str3('2',9); /*todo 重复字符串初始化*/
+        std::cout<<str3<<"重复字符初始化"<<std::endl;
+
+        std::string str4= (str1)+str2 +str3; /*todo 字符串拼接*/
+        std::cout<<str4<<"字符串拼接"<<std::endl;
+
+        //todo 基本操作
+        std::cout<<str4.empty()<<":是否empty"<<std::endl;
+        std::cout<<str4.size()<<":size长度"<<std::endl;
+        std::cout<<str4.length()<<":length长度"<<std::endl;
+        std::cout<<str4[1]<<":获取str4[1]"<<std::endl;
+        str3.clear();//todo 清空字符
+        str4.erase(5,2);//todo 可以通过迭代器删除也可以通过指定位置删除 从第五个字符开始删除2个字符串
+        auto it = str4.begin()+2;
+        str4.erase(it,it+3);//todo 删除从迭代器指向的开始位置到后面的三个元素
+        str4.erase(it);//todo 删除从迭代器指向的开始位置到最后
+        str4.insert(2,"s"); //todo 从位置2插入字符串”s“
+        str4.append("use");//todo 追加字符串
+        auto substr = str4.substr(3);//todo 从第三个位置获取子串
+        if(str4.find("china") == std::string::npos) //todo find返回的一个china这个字符串的首次位置(如果找到的话)pos，没有找到的话，pos == npos.
+        {
+            std::cout<<"cant find "<<std::endl;
+        }
+        str4.find("china",5);//todo 从第五个位置开始查
+        str4.find('2',5);//todo 查字符
+        //todo 转为c风格的字符指针
+        const char* cstr = str4.c_str();
+        std::cout<<"c style string "<<cstr<<std::endl;
+
+        //todo 使用比较运算符 ==, !=, <, >, <=, >=
+        //todo 使用基础的loop遍历
+        for(auto & ch : str4)
+        {
+            std::cout<<ch <<std::endl;
+        }
+        //todo 使用迭代器遍历遍历
+        for(auto itor = str4.begin();itor != str4.end();itor++)
+        {
+            std::cout<<*itor<<std::endl;
+        }
+        // todo 替代字符串
+        str4.replace(3,6,"hello");//todo 从位置3开始替换6个字符为hello
+
+        //todo test
+        std::string uri("https://172.20.140.103/imsi-46011123456789/uepolicy/1425");
+        if(uri.find("https://") == std::string::npos)
+        {
+            std::cout<<"bad uri"<<std::endl;
+            return;
+        }
+        auto authoritytemp = uri.substr(uri.find("https://")+8);
+        auto authority  = authoritytemp.substr(0,authoritytemp.find('/'));
+        std::cout<<"authority is "<<authority<<std::endl;
+    }
 
 
 
