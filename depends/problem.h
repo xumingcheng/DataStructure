@@ -215,11 +215,16 @@ public:
         vec3.swap(vec3);//todo 能够将size 和 capacity调整到当前的大小，如果一个向量删除了很多元素的情况
         vec3.shrink_to_fit();// todo 和上面的swap交换自己功能类似
         //todo  find的用法 ,同样也支持查找函数，lambada表达式，以及仿函数作为查找的方式
-        auto it = std::find(vec3.begin(), vec3.end(), 3);
-        auto i1t = std::find(vec3.begin(), vec3.end(), [](int &a)
+        auto it = std::find(vec3.begin(), vec3.end(), 3);//todo find只能查找特定的大于某个值的元素
+        // todo 用于查找第一个满足特定条件（谓词）的元素。
+        // todo 谓词是一个返回 bool 类型的函数或者 lambda 表达式。
+       // todo 返回值与 find 类似，找到匹配元素则返回指向该元素的迭代器，否则返回指向容器末尾的迭代器。
+        auto i1t = std::find_if(vec3.begin(), vec3.end(), [](int &a)
         {
             return a > 4;
+            // todo 用于查找第一个满足特定条件（谓词）的元素。
         });
+
         if(it != vec3.end())
         {
             std::cout<<"find success"<<std::endl;
@@ -234,11 +239,30 @@ public:
         std::map<int,std::string> _map ={{1,"china"},{2,"japan"}};
         //todo 插入元素
         _map[2] = "USE";
-        _map.insert({4,"key"});
-        _map.emplace(5,"hello");
+        _map.insert({4,"key"}); //
+        _map.emplace(5,"hello"); //todo 使用 emplace(): 避免不必要的拷贝。和insert类似
         //todo 访问元素
-        _map[1];_map.at(1);//todo at如果key不存在，会抛出异常，而【】不会抛出异常
+        std::string str = _map[1];_map.at(1);//todo at如果key不存在，不会插入新的元素，会抛出异常，而【】不会抛出异常,会插入新的元素，在本例子中会增加该键，value是空串
         //todo find查找元素
+        try{
+            auto str = _map.at(30);
+        }
+        catch (const std::out_of_range &exception)
+        {
+            std::cout<<"exception is "<<exception.what()<<std::endl;
+            return ;
+        }
+        //todo 查找键为3的元素
+        auto result = _map.find(3);
+        if(result == _map.end())
+        {
+            std::cout<<"cant find"<<std::endl;
+        }
+        //todo 检查键3是否存在 存在返回TRUE,不存在返回FALSE
+        if(_map.count(3))
+        {
+            std::cout<<"_map.count have find"<<std::endl;
+        }
 
 
 
