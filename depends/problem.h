@@ -263,13 +263,40 @@ public:
         {
             std::cout<<"_map.count have find"<<std::endl;
         }
+        //todo 删除
+        _map.erase(1);//todo 按照键值对进行删除
+        //todo 查找
+       auto it=  _map.find(1);
+       if(it != _map.end())
+       {
+           std::cout<<"find"<<it->second<< std::endl;
+       }
+       //todo 遍历
+       for(auto & pair : _map)
+       {
+           std::cout<<"loop "<<pair.first<<pair.first<<std::endl;
+       }
+       //todo 迭代器遍历
+       for(auto pair = _map.begin();pair != _map.end();pair++)
+       {
+           std::cout<<"loop "<<pair->first<<pair->first<<std::endl;
+       }
+       //todo 清空
+       _map.clear();
+       //todo 自定义排序
+        struct DescendingOrder {
+            bool operator()(int a, int b) const {
+                return a > b;
+            }
+            bool operator()(std::string a, std::string b) const {
+                return a > b;
+            }
+        };
 
-
-
+        std::map<int, std::string, DescendingOrder> descendingMap;
+        descendingMap[1] = "one";
+        descendingMap[2] = "two";
     }
-
-
-
     /*todo ============================map的使用End===================================*/
     /*todo ============================array的使用====================================*/
 
