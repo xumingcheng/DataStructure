@@ -25,6 +25,10 @@ typedef struct Student{
         }
 
     }
+    Student(char *a)
+    {
+
+    }
 
     Student(int a)
     {
@@ -118,7 +122,7 @@ public:
         std::string str2(str1); /*todo 拷贝构造*/
         std::cout<<str2<<"拷贝构造"<<std::endl;
 
-        std::string str3('2',9); /*todo 重复字符串初始化*/
+        std::string str3(3,'w'); /*todo 重复字符串初始化*/
         std::cout<<str3<<"重复字符初始化"<<std::endl;
 
         std::string str4= (str1)+str2 +str3; /*todo 字符串拼接*/
@@ -177,7 +181,8 @@ public:
     /*todo ============================vector的使用===================================*/
     void studyvector()
     {
-        std::vector<Student> vec(10); //todo 调用Student的默认构造函数
+        char a = 10;
+        std::vector<Student> vec(10,&a); //todo 调用Student的入参是char* 创建10个对象
         std::vector<int> vec3(5, 10); //todo 指定5个值为10的元素
         std::vector<int> _vec2 = {1,3}; //todo 初始化
         vec3.push_back(2);//todo 向末尾增加元素
@@ -185,6 +190,8 @@ public:
         vec3.size();//todo 获取向量的大小
         vec3.capacity();//todo 获取向量的容量大小
         vec3.resize(10);//todo 重新调整容量大小，如果小于之前的容量则将多余的删除
+        std::vector<Student> __vec;
+        __vec.resize(3, Student(42)); //todo 创建 3 个 Student 对象，id 为 42
         if(vec3.empty()) //todo 判空
         {
             std::cout<<"vec is empty"<<std::endl;
@@ -263,7 +270,7 @@ public:
         {
             std::cout<<"_map.count have find"<<std::endl;
         }
-        //todo 删除
+        // todo 删除
         _map.erase(1);//todo 按照键值对进行删除
         //todo 查找
        auto it=  _map.find(1);
@@ -293,11 +300,12 @@ public:
             }
         };
 
+        //todo 只会使用key类型排序
         std::map<int, std::string, DescendingOrder> descendingMap;
         descendingMap[1] = "one";
         descendingMap[2] = "two";
     }
-    /*todo ============================map的使用End===================================*/
+    /* todo ============================map的使用End===================================*/
     /*todo ============================array的使用====================================*/
 
 
@@ -324,7 +332,7 @@ public:
     TreeP()
     {
         std::cout<<"tree" << std::endl;
-        //RootNode = new NodeP; //todo :错误没有合适的构造函数。
+        //RootNode = new NodeP; // todo :错误没有合适的构造函数。
         RootNode = new NodeP(20); //todo :正确。
         auto nodes = "400"_tb; //todo nodes是一个对象，根据字面值类型的不同，操作符函数可以接受的参数也是不一样的。int operator"" _n(unsigned long long i)
                                //todo double operator"" _f(long double i) int operator"" _s(const char*s, size_t l) int operator"" _c(char c)
