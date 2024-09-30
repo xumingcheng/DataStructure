@@ -5,6 +5,14 @@
 #ifndef UNTITLED21_EXCEPTION_H
 #define UNTITLED21_EXCEPTION_H
 #include <vector>
+#include <string>
+template<typename T>
+class oncestr
+{
+private:
+    char *Data = nullptr;
+
+};
 class problem
 {
 

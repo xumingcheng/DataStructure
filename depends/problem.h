@@ -281,7 +281,7 @@ public:
        //todo 遍历
        for(auto & pair : _map)
        {
-           std::cout<<"loop "<<pair.first<<pair.first<<std::endl;
+           std::cout<<"loop "<<pair.first<<pair.second<<std::endl;
        }
        //todo 迭代器遍历
        for(auto pair = _map.begin();pair != _map.end();pair++)
