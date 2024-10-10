@@ -65,3 +65,32 @@ at ten o'clock we'll go home." | sed -n '/.at/p'
 
 
 # todo 字符组
+
+#todo sed进阶
+#todo 命令 ############## n ####################
+# todo 通常，todo sed 在处理每一行时都会从命令列表的第一条命令开始依次执行，直到所有命令都处理完。但在 n 命令之后，sed 直接从 n 后面的命令继续处理下一行，
+# todo 而不会重新从命令列表的第一条命令开始处理新行。这使得 n 能跳过某些命令，只执行部分命令。
+cat file.txt
+line1
+line2
+line3
+line4
+#todo 执行 sed 's/line/LINE/; n; s/2/two/' file.txt
+LINE1
+line two
+LINE3
+line4
+
+#todo 命令 ############## N ####################
+#todo sed 中的 N 命令用于读取输入的下一行并将其追加到当前模式空间，即在当前行和下一行之间添加一个换行符。
+# todo 它的作用是将两行内容合并到模式空间中一起处理。通常，这个命令与其他命令配合使用，来处理跨行的模式匹配或替换操作
+
+#todo 模式空间 模式空间（pattern space）是一个存储当前正在处理的文本行的临时缓冲区。sed 通过模式空间对输入数据进行操作，
+# todo 并根据编辑命令修改模式空间中的内容。每次 sed 处理一行时，模式空间会加载该行，并应用定义的 sed 命令，直到处理完成再输出。
+sed 'N; s/\n/ /' file.txt #todo 输出line1 line2
+                                 # line3 line4
+sed 'N;N;s/\n/ /g' file.txt #todo N;N：读取两行并将其与当前行合并，共三行。s/\n/ /g：将所有的换行符替换为空格。
+#todo sed 编辑器提供了多行删除（D）命令，该命令只会删除模式空间中的第一行，即删除该行中的换行符及其之前的所有字符
+sed 'N; /line1\nline2/D' file.txt # todo line2
+                                         line3
+                                         line4
