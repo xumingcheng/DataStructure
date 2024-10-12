@@ -128,7 +128,7 @@ public:
         std::string str4= (str1)+str2 +str3; /*todo 字符串拼接*/
         std::cout<<str4<<"字符串拼接"<<std::endl;
 
-        //todo 基本操作
+        // 基本操作
         std::cout<<str4.empty()<<":是否empty"<<std::endl;
         std::cout<<str4.size()<<":size长度"<<std::endl;
         std::cout<<str4.length()<<":length长度"<<std::endl;
