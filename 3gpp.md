@@ -36,3 +36,11 @@ UE触发的PDU的Modify，首先UE向AMF发送了NAS消息 PDU Session Modificat
 
 SMF触发的mod 是PCF或者UDM等导致的，N1 N2 消息应该和3a类似
 
+# 二 23502 
+
+### Identity Request
+
+identity Request的消息当UE_CONTEXT_TRANSFER_RSP消息之后，如果此时没有SUCI的信息，则AMF需要去请求UE，IdentityRequest消息，UE会返回IdentityRsp消息，然后将SUCI的信息带给AMF。另外在UE_CONTEXT_TRANSFER_UPDP_REQ之后，AMF会根据是否存在PEI的信息，如果没有PEI的信息，则会请求UE，PEI的信息。另外就是在鉴权的时候，如果RES*和XRES*的信息不一致，而且终端是带着GUTI注册的，这个时候AMF会向UE请求SUCI重新鉴权。
+
+PEI包括IMEI和IMEIsv，IMEIsv是IMEI的扩展，包含了软件的相关信息
+
