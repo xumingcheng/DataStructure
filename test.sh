@@ -103,3 +103,6 @@ sed 'N; /line1\nline2/D' file.txt # todo line2
 #todo     G：将保留空间的内容追加到模式空间，保留原有内容并在末尾加上保留空间的新内容。
 # todo     x：交换模式空间和保留空间的内容。
 #todo file.txt =>
+
+
+#find命令和rm命令 引号的扩展问题
