@@ -105,4 +105,4 @@ sed 'N; /line1\nline2/D' file.txt # todo line2
 #todo file.txt =>
 
 
-#find命令和rm命令 引号的扩展问题
+

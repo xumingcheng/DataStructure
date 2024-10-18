@@ -77,3 +77,28 @@ echo "abc 123" | sed -E 's/([a-z]+) ([0-9]+)/\2 \1/'
 # 它们的前缀aarch64-linux-gnu-表示它们是为64位ARM架构（AArch64）编译目标系统的工具，而不是当前主机系统（如果主机是x86_64架构）。
 #如果当前机器是ARM架构（例如AArch64），那通常可以直接使用系统自带的编译器（例如gcc或g++），而不需要使用带有aarch64-linux-gnu-前缀的交叉编译工具链。
 #aarch64-linux-gnu-gcc 这个是要自己安装的
+
+
+
+#find命令和rm命令 引号的扩展问题
+find . -name "*.txt" #查找当前目录下所有的以.txt结尾的文件
+#引号的作用：引号的作用是避免 shell 提前对 * 进行扩展。未加引号时，shell 会先对 * 进行扩展，将它替换为匹配的文件名，
+# 然后再传给 find。加了引号后，find 命令接收到的字符串仍然是 *.txt，而不是被 shell 扩展后的文件名。
+#find 的处理：find 命令接收到 *.txt 后，它自己会将 * 视为通配符，去匹配所有以 .txt 结尾的文件。
+# 这是因为 find 的 -name 选项支持文件名模式匹配，而 * 在这种上下文中就是通配符。
+rm *.txt  #shell会对通配符进行扩展，删除当前所有的.txt的文件
+rm "*.txt" #shell不会对*进行扩展，但是rm 命令不支持对*.txt文件的扩展，导致rm会删除一个*txt文件
+#cat rm mv cp都不支持模式匹配,shell做匹配
+#find sed grep egrep tr都是命令上支持模式匹配的
+
+mkdir -p /home/user/documents/projects #递归的创建目录 不会报错
+
+#tr命令
+#tr 是一个用于 字符转换和删除 的命令，可以用来替换、压缩或删除输入中的字符。常见的用法包括替换字符、压缩重复的字符，或删除指定的字符。
+#tr [OPTION]... SET1 [SET2]
+echo "hello world" | tr 'a-z' 'A-Z'
+echo "hello world" | tr -t '[:lower:]' '[:upper:]'
+echo -e "Line1\nLine2\nLine3" | tr '\n' ' ' #换行符替换为空格
+echo "abc123xyz" | tr -d '0-9'  #删除字符串中的数字
+echo "This   is   a    test" | tr -s ' ' #压缩多个空格为单个空格：
+cat file.txt | tr '\n' ' ' #把文件 file.txt 中的所有换行符替换为空格，从而将多行内容合并为一行。
