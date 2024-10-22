@@ -2,8 +2,8 @@
 // Created by 请输入我的名字 on 2024/9/20.
 //
 #include "problem.h"
-#include "exception.h"
-cycle<problem> _cycle_problem;
+#include "debug.h"
+
 typedef struct classroom
 {
     int total;
@@ -26,6 +26,13 @@ int * test2(ClassRoom *ptRoom)
     //return a //todo b 是一个局部变量，它的作用域仅限于 test2 函数。当函数结束时，b 被销毁，指向它的指针 a 将指向一个无效的地址。不会报错，但是存在问题
     return &ptRoom->total;
 }
+void TestDebug (int num)
+{
+    if (num == 0)
+    {
+        throw newProblem();
+    }
+}
 int main()
 {
     auto Node = new NodeP;
@@ -37,5 +44,14 @@ int main()
     int * puse = test2(&tRoom);
     std::cout<<"usetotal is "<<use<<std::endl;
     std::cout<<"pusetotal is "<<*puse<<std::endl;
+    try {
+        TestDebug(0);
+    }
+    catch (problem &_problem)
+    {
+        std::cout<<"fail ......"<<std::endl;
+
+    }
+
 
 }
