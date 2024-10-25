@@ -3,6 +3,7 @@
 //
 #include "problem.h"
 #include "debug.h"
+#include "3gpp_38413.h"
 
 typedef struct classroom
 {
@@ -52,6 +53,13 @@ int main()
         std::cout<<"fail ......"<<std::endl;
 
     }
+    try{
+        CHECK_VALUE(1,== ,2);
+    }catch (problem&pro)
+    {
+
+    }
+
 
 
 }

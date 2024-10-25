@@ -24,6 +24,7 @@ private:
 
 public :
     void debug();
+    void init();
 };
 template<typename T>
 class cycle{
