@@ -102,3 +102,4 @@ echo -e "Line1\nLine2\nLine3" | tr '\n' ' ' #换行符替换为空格
 echo "abc123xyz" | tr -d '0-9'  #删除字符串中的数字
 echo "This   is   a    test" | tr -s ' ' #压缩多个空格为单个空格：
 cat file.txt | tr '\n' ' ' #把文件 file.txt 中的所有换行符替换为空格，从而将多行内容合并为一行。
+ls | egrep ".*\.txt$" |xargs rm -f
